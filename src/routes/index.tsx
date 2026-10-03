@@ -9,6 +9,22 @@ import {
   portraitAsset,
   type Lang,
 } from "@/content/portfolio";
+import unifiLogo from "@/assets/logos/unifi.svg";
+import microsoftLogo from "@/assets/logos/microsoft.svg";
+import googleLogo from "@/assets/logos/google.svg";
+import whartonLogo from "@/assets/logos/wharton.svg";
+import unileverLogo from "@/assets/logos/unilever.svg";
+import sapLogo from "@/assets/logos/sap.svg";
+import intuitLogo from "@/assets/logos/intuit.svg";
+
+const certLogos = [
+  { src: microsoftLogo, alt: "Microsoft" },
+  { src: googleLogo, alt: "Google" },
+  { src: whartonLogo, alt: "Wharton — University of Pennsylvania" },
+  { src: unileverLogo, alt: "Unilever" },
+  { src: sapLogo, alt: "SAP" },
+  { src: intuitLogo, alt: "Intuit" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -62,7 +78,7 @@ function Reveal({
     if (!el) return;
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setVisible(true);
           io.disconnect();
         }
@@ -224,15 +240,19 @@ function Index() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={120} className="relative">
-            <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand/15 via-accent/15 to-violet-accent/15" />
-            <div className="overflow-hidden rounded-[1.75rem] ring-1 ring-black/5">
-              <img
-                src={portraitAsset.url}
-                alt="Soumyakanta Bera"
-                className="aspect-[4/5] w-full bg-white object-cover"
-                loading="eager"
-              />
+          <Reveal delay={120} className="relative mx-auto w-full max-w-[260px] sm:max-w-[300px]">
+            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand via-accent to-violet-accent opacity-25 blur-2xl" />
+            <div className="absolute -left-6 top-8 -z-10 size-20 rounded-full bg-green-accent/30 blur-xl" />
+            <div className="absolute -right-4 bottom-10 -z-10 size-16 rounded-full bg-accent/40 blur-lg" />
+            <div className="rounded-[1.75rem] bg-gradient-to-br from-brand/25 via-accent/20 to-violet-accent/25 p-2 ring-1 ring-black/5">
+              <div className="overflow-hidden rounded-[1.35rem]">
+                <img
+                  src={portraitAsset.url}
+                  alt="Soumyakanta Bera"
+                  className="aspect-[4/5] w-full bg-white object-cover"
+                  loading="eager"
+                />
+              </div>
             </div>
             <p className="mt-3 text-center font-mono text-[11px] text-soft">
               India → Florence → Milan
@@ -352,13 +372,22 @@ function Index() {
               </p>
               <div className="mt-4 space-y-5">
                 {t.education.degrees.map((deg) => (
-                  <div key={deg.degree}>
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <p className="font-display font-semibold leading-snug">{deg.degree}</p>
-                      <span className="font-mono text-[11px] text-soft">{deg.period}</span>
+                  <div key={deg.degree} className="flex items-start gap-3">
+                    {deg.school.includes("Florence") && (
+                      <img
+                        src={unifiLogo}
+                        alt="University of Florence"
+                        className="mt-0.5 h-9 w-9 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-black/5"
+                      />
+                    )}
+                    <div>
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
+                        <p className="font-display font-semibold leading-snug">{deg.degree}</p>
+                        <span className="font-mono text-[11px] text-soft">{deg.period}</span>
+                      </div>
+                      <p className="mt-0.5 text-sm font-medium text-soft">{deg.school}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-soft/80">{deg.detail}</p>
                     </div>
-                    <p className="mt-0.5 text-sm font-medium text-soft">{deg.school}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-soft/80">{deg.detail}</p>
                   </div>
                 ))}
               </div>
@@ -378,6 +407,17 @@ function Index() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-black/5 pt-4">
+                  {certLogos.map((logo) => (
+                    <img
+                      key={logo.alt}
+                      src={logo.src}
+                      alt={logo.alt}
+                      title={logo.alt}
+                      className="h-5 w-auto max-w-[88px] object-contain opacity-70 transition-opacity hover:opacity-100"
+                    />
+                  ))}
+                </div>
               </div>
               <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
