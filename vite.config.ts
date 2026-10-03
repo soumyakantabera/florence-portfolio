@@ -16,6 +16,11 @@ export default defineConfig({
   },
   nitro: false,
   tanstackStart: {
-    spa: true,
+    spa: {
+      enabled: true,
+      prerender: {
+        outputPath: "/index.html",
+      },
+    },
   },
 });
