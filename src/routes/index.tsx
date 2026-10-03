@@ -9,6 +9,22 @@ import {
   portraitAsset,
   type Lang,
 } from "@/content/portfolio";
+import unifiLogo from "@/assets/logos/unifi.svg";
+import microsoftLogo from "@/assets/logos/microsoft.svg";
+import googleLogo from "@/assets/logos/google.svg";
+import whartonLogo from "@/assets/logos/wharton.svg";
+import unileverLogo from "@/assets/logos/unilever.svg";
+import sapLogo from "@/assets/logos/sap.svg";
+import intuitLogo from "@/assets/logos/intuit.svg";
+
+const certLogos = [
+  { src: microsoftLogo, alt: "Microsoft" },
+  { src: googleLogo, alt: "Google" },
+  { src: whartonLogo, alt: "Wharton — University of Pennsylvania" },
+  { src: unileverLogo, alt: "Unilever" },
+  { src: sapLogo, alt: "SAP" },
+  { src: intuitLogo, alt: "Intuit" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -224,15 +240,19 @@ function Index() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={120} className="relative">
-            <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-brand/15 via-accent/15 to-violet-accent/15" />
-            <div className="overflow-hidden rounded-[1.75rem] ring-1 ring-black/5">
-              <img
-                src={portraitAsset.url}
-                alt="Soumyakanta Bera"
-                className="aspect-[4/5] w-full bg-white object-cover"
-                loading="eager"
-              />
+          <Reveal delay={120} className="relative mx-auto w-full max-w-[260px] sm:max-w-[300px]">
+            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-brand via-accent to-violet-accent opacity-25 blur-2xl" />
+            <div className="absolute -left-6 top-8 -z-10 size-20 rounded-full bg-green-accent/30 blur-xl" />
+            <div className="absolute -right-4 bottom-10 -z-10 size-16 rounded-full bg-accent/40 blur-lg" />
+            <div className="rounded-[1.75rem] bg-gradient-to-br from-brand/25 via-accent/20 to-violet-accent/25 p-2 ring-1 ring-black/5">
+              <div className="overflow-hidden rounded-[1.35rem]">
+                <img
+                  src={portraitAsset.url}
+                  alt="Soumyakanta Bera"
+                  className="aspect-[4/5] w-full bg-white object-cover"
+                  loading="eager"
+                />
+              </div>
             </div>
             <p className="mt-3 text-center font-mono text-[11px] text-soft">
               India → Florence → Milan
