@@ -24,3 +24,13 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Deploy to GitHub Pages
+
+1. Push changes to the `main` branch.
+2. In GitHub, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+3. The `Deploy to GitHub Pages` workflow will build and publish the app automatically.
+
+For this repository, the site will be available at:
+
+`https://soumyakantabera.github.io/florence-portfolio/`
