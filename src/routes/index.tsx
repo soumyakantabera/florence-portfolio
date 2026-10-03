@@ -372,13 +372,22 @@ function Index() {
               </p>
               <div className="mt-4 space-y-5">
                 {t.education.degrees.map((deg) => (
-                  <div key={deg.degree}>
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <p className="font-display font-semibold leading-snug">{deg.degree}</p>
-                      <span className="font-mono text-[11px] text-soft">{deg.period}</span>
+                  <div key={deg.degree} className="flex items-start gap-3">
+                    {deg.school.includes("Florence") && (
+                      <img
+                        src={unifiLogo}
+                        alt="University of Florence"
+                        className="mt-0.5 h-9 w-9 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-black/5"
+                      />
+                    )}
+                    <div>
+                      <div className="flex flex-wrap items-baseline justify-between gap-2">
+                        <p className="font-display font-semibold leading-snug">{deg.degree}</p>
+                        <span className="font-mono text-[11px] text-soft">{deg.period}</span>
+                      </div>
+                      <p className="mt-0.5 text-sm font-medium text-soft">{deg.school}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-soft/80">{deg.detail}</p>
                     </div>
-                    <p className="mt-0.5 text-sm font-medium text-soft">{deg.school}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-soft/80">{deg.detail}</p>
                   </div>
                 ))}
               </div>
@@ -398,6 +407,17 @@ function Index() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-black/5 pt-4">
+                  {certLogos.map((logo) => (
+                    <img
+                      key={logo.alt}
+                      src={logo.src}
+                      alt={logo.alt}
+                      title={logo.alt}
+                      className="h-5 w-auto max-w-[88px] object-contain opacity-70 transition-opacity hover:opacity-100"
+                    />
+                  ))}
+                </div>
               </div>
               <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
