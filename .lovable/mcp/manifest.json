@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "sdk_version": "3.0.4",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "florence-portfolio",
+      "version": "0.1.0",
+      "title": "Florence Portfolio"
+    },
+    "tools": [
+      {
+        "name": "get_profile",
+        "title": "Get portfolio profile",
+        "description": "Return Soumyakanta Bera's portfolio: summary, experience, projects, skills, education, certifications and languages.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "lang": {
+              "default": "en",
+              "description": "Language: 'en' (English) or 'it' (Italian).",
+              "type": "string",
+              "enum": [
+                "en",
+                "it"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_cv_links",
+        "title": "Get CV download links",
+        "description": "List the four downloadable CVs (Finance and Data editions, in English and Italian). Paths are relative to the portfolio site.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": false
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
