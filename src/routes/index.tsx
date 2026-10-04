@@ -5,6 +5,7 @@ import {
   cvAssets,
   email,
   linkedinUrl,
+  mcpEndpoint,
   phone,
   portraitAsset,
   type Lang,
@@ -17,7 +18,32 @@ import unileverLogo from "@/assets/logos/unilever.svg";
 import sapLogo from "@/assets/logos/sap.svg";
 import intuitLogo from "@/assets/logos/intuit.svg";
 
-const certLogos = [
+const mcpConfig = JSON.stringify(
+  { mcpServers: { "soumyakanta-portfolio": { url: mcpEndpoint } } },
+  null,
+  2,
+);
+
+function CopyButton({ label, copiedLabel }: { label: string; copiedLabel: string }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(mcpConfig);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+  return (
+    <button
+      onClick={copy}
+      className="shrink-0 rounded-full bg-brand/10 px-3 py-1.5 text-[11px] font-semibold text-brand transition-colors hover:bg-brand/20"
+    >
+      {copied ? copiedLabel : label}
+    </button>
+  );
+}
   { src: microsoftLogo, alt: "Microsoft" },
   { src: googleLogo, alt: "Google" },
   { src: whartonLogo, alt: "Wharton — University of Pennsylvania" },
