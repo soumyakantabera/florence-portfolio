@@ -14,3 +14,4 @@
 - Portfolio is a single scrolling page (`src/routes/index.tsx`) with hash-anchor navigation — the user explicitly asked for a one-page site; don't split sections into routes.
 - All content lives in `src/content/portfolio.ts` as an EN/IT content model; components render from it, no copy is hardcoded in JSX.
 - Language is client state persisted in `localStorage` under `portfolio-lang`; both languages are static strings, no backend.
+- MCP server lives in src/lib/mcp (one tool per file), served via mcpPlugin at /mcp; public read-only tools over the static content model — no accounts exist.
