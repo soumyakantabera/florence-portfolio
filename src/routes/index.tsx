@@ -44,6 +44,8 @@ function CopyButton({ label, copiedLabel }: { label: string; copiedLabel: string
     </button>
   );
 }
+
+const certLogos = [
   { src: microsoftLogo, alt: "Microsoft" },
   { src: googleLogo, alt: "Google" },
   { src: whartonLogo, alt: "Wharton — University of Pennsylvania" },
