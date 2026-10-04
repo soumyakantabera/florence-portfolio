@@ -473,7 +473,7 @@ function Index() {
         </Reveal>
         <Reveal delay={80}>
           <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1.2fr]">
-            <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
+            <div className="min-w-0 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
                 {t.mcp.endpointLabel}
               </p>
@@ -498,9 +498,9 @@ function Index() {
                 {t.mcp.note}
               </p>
             </div>
-            <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
+            <div className="min-w-0 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
+                <p className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
                   {t.mcp.configLabel}
                 </p>
                 <CopyButton label={t.mcp.copyLabel} copiedLabel={t.mcp.copiedLabel} />
