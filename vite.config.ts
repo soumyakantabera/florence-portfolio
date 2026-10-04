@@ -7,13 +7,14 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/tanstack/vite";
 
-const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1];
-const isGithubActionsBuild = process.env.GITHUB_ACTIONS === "true";
+const repositoryName = process.env["GITHUB_REPOSITORY"]?.split("/")[1];
+const isGithubActionsBuild = process.env["GITHUB_ACTIONS"] === "true";
 const githubPagesBasePath = repositoryName ? `/${repositoryName}/` : "/";
 
 export default defineConfig({
   vite: {
     base: isGithubActionsBuild ? githubPagesBasePath : "/",
+    plugins: [mcpPlugin()],
   },
   nitro: false,
   tanstackStart: {
@@ -23,8 +24,5 @@ export default defineConfig({
         outputPath: "/index.html",
       },
     },
-  },
-  vite: {
-    plugins: [mcpPlugin()],
   },
 });

@@ -11,6 +11,8 @@ export const linkedinUrl = "https://www.linkedin.com/in/soumyakantabera";
 export const email = "bera.soumyakanta@yahoo.com";
 export const phone = "+39 347 924 9860";
 export const doiUrl = "https://doi.org/10.2139/ssrn.7082778";
+/** Public MCP endpoint served at /mcp on the published site. */
+export const mcpEndpoint = "https://project--94f0b029-540f-4b7a-8a17-ccd40827d05b.lovable.app/mcp";
 
 /** All four CVs — the "finance" and "data" tracks, each in EN and IT. */
 export const cvAssets = {
@@ -85,6 +87,18 @@ export interface Content {
   languages: {
     title: string;
     items: { name: string; level: string }[];
+  };
+  mcp: {
+    title: string;
+    sub: string;
+    lead: string;
+    endpointLabel: string;
+    toolsTitle: string;
+    tools: { name: string; args: string; desc: string }[];
+    configLabel: string;
+    copyLabel: string;
+    copiedLabel: string;
+    note: string;
   };
   contact: {
     title: string;
@@ -248,6 +262,29 @@ export const content: Record<Lang, Content> = {
         { name: "English", level: "Advanced (C1)" },
         { name: "Italian", level: "Intermediate (B1)" },
       ],
+    },
+    mcp: {
+      title: "For AI assistants",
+      sub: "MCP · public & read-only",
+      lead: "This portfolio exposes a public MCP endpoint, so AI assistants such as ChatGPT, Claude or Cursor can look up my background and CV downloads directly — no login required, read-only.",
+      endpointLabel: "Endpoint",
+      toolsTitle: "Tools",
+      tools: [
+        {
+          name: "get_profile",
+          args: "lang: en · it",
+          desc: "Full profile: summary, experience, flagship projects, skills, education, certifications, languages and contacts.",
+        },
+        {
+          name: "get_cv_links",
+          args: "no input",
+          desc: "The four CV downloads: Finance and Data editions, in English and Italian.",
+        },
+      ],
+      configLabel: "Client configuration (Claude, ChatGPT, Cursor…)",
+      copyLabel: "Copy",
+      copiedLabel: "Copied!",
+      note: "Public and read-only — the phone number is not included.",
     },
     contact: {
       title: "Let's talk numbers.",
@@ -413,6 +450,29 @@ export const content: Record<Lang, Content> = {
         { name: "Inglese", level: "Avanzato (C1)" },
         { name: "Italiano", level: "Intermedio (B1, in consolidamento)" },
       ],
+    },
+    mcp: {
+      title: "Per assistenti AI",
+      sub: "MCP · pubblico e in sola lettura",
+      lead: "Questo portfolio espone un endpoint MCP pubblico: assistenti AI come ChatGPT, Claude o Cursor possono consultare direttamente il mio profilo e i download dei CV — senza login, in sola lettura.",
+      endpointLabel: "Endpoint",
+      toolsTitle: "Strumenti",
+      tools: [
+        {
+          name: "get_profile",
+          args: "lang: en · it",
+          desc: "Profilo completo: sintesi, esperienza, progetti di punta, competenze, istruzione, certificazioni, lingue e contatti.",
+        },
+        {
+          name: "get_cv_links",
+          args: "nessun input",
+          desc: "I quattro CV scaricabili: edizioni Finanza e Dati, in inglese e italiano.",
+        },
+      ],
+      configLabel: "Configurazione client (Claude, ChatGPT, Cursor…)",
+      copyLabel: "Copia",
+      copiedLabel: "Copiato!",
+      note: "Pubblico e in sola lettura — il numero di telefono non è incluso.",
     },
     contact: {
       title: "Parliamo di numeri.",

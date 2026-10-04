@@ -5,6 +5,7 @@ import {
   cvAssets,
   email,
   linkedinUrl,
+  mcpEndpoint,
   phone,
   portraitAsset,
   type Lang,
@@ -16,6 +17,33 @@ import whartonLogo from "@/assets/logos/wharton.svg";
 import unileverLogo from "@/assets/logos/unilever.svg";
 import sapLogo from "@/assets/logos/sap.svg";
 import intuitLogo from "@/assets/logos/intuit.svg";
+
+const mcpConfig = JSON.stringify(
+  { mcpServers: { "soumyakanta-portfolio": { url: mcpEndpoint } } },
+  null,
+  2,
+);
+
+function CopyButton({ label, copiedLabel }: { label: string; copiedLabel: string }) {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(mcpConfig);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+  return (
+    <button
+      onClick={copy}
+      className="shrink-0 rounded-full bg-brand/10 px-3 py-1.5 text-[11px] font-semibold text-brand transition-colors hover:bg-brand/20"
+    >
+      {copied ? copiedLabel : label}
+    </button>
+  );
+}
 
 const certLogos = [
   { src: microsoftLogo, alt: "Microsoft" },
@@ -435,6 +463,54 @@ function Index() {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      {/* MCP guide */}
+      <section id="ai" className="mx-auto max-w-6xl scroll-mt-20 px-5 pb-14 sm:px-6">
+        <Reveal>
+          <SectionHeading title={t.mcp.title} sub={t.mcp.sub} />
+          <p className="max-w-2xl text-sm leading-relaxed text-soft">{t.mcp.lead}</p>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1.2fr]">
+            <div className="min-w-0 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
+                {t.mcp.endpointLabel}
+              </p>
+              <div className="mt-3 flex items-center gap-2 rounded-xl bg-white px-3 py-2.5 ring-1 ring-black/10">
+                <span className="size-1.5 shrink-0 rounded-full bg-green-accent" />
+                <code className="truncate font-mono text-xs text-ink">{mcpEndpoint}</code>
+              </div>
+              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
+                {t.mcp.toolsTitle}
+              </p>
+              <ul className="mt-3 space-y-3">
+                {t.mcp.tools.map((tool) => (
+                  <li key={tool.name}>
+                    <p className="font-mono text-xs font-semibold text-ink">
+                      {tool.name} <span className="font-normal text-soft">({tool.args})</span>
+                    </p>
+                    <p className="mt-0.5 text-xs leading-relaxed text-soft">{tool.desc}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 border-t border-black/5 pt-4 text-[11px] leading-relaxed text-soft/70">
+                {t.mcp.note}
+              </p>
+            </div>
+            <div className="min-w-0 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
+              <div className="flex items-center justify-between gap-3">
+                <p className="min-w-0 truncate text-[11px] font-semibold uppercase tracking-[0.18em] text-brand/70">
+                  {t.mcp.configLabel}
+                </p>
+                <CopyButton label={t.mcp.copyLabel} copiedLabel={t.mcp.copiedLabel} />
+              </div>
+              <pre className="mt-3 overflow-x-auto rounded-xl bg-ink p-4 font-mono text-[11px] leading-relaxed text-white/90">
+                {mcpConfig}
+              </pre>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* Contact */}
